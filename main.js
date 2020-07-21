@@ -10,25 +10,25 @@ var muted_users     = [ { username: '', timeout: 3 } ];
 
 function lower_risk_level() {
   warning_1_users.forEach(function(element, index, object) {
-    if (element.timeout > 0)
+    if (element.timeout > 1)
       element.timeout--;
     else
       object.splice(index, 1);
   });
   warning_2_users.forEach(function(element, index, object) {
-    if (element.timeout > 0)
+    if (element.timeout > 1)
       element.timeout--;
     else
       object.splice(index, 1);
   });
   warning_3_users.forEach(function(element, index, object) {
-    if (element.timeout > 0)
+    if (element.timeout > 1)
       element.timeout--;
     else
       object.splice(index, 1);
   });
   muted_users.forEach(function(element, index, object) {
-    if (element.timeout > 0)
+    if (element.timeout > 1)
       element.timeout--;
     else
       object.splice(index, 1);

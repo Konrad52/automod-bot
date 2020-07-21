@@ -7,7 +7,7 @@ var warning_1_users = [ { username: 'test#0000', timeout: 3 } ];
 var warning_2_users = [ { username: 'test#0000', timeout: 3 } ];
 var muted_users     = [ { username: 'test#0000', timeout: 3 } ];
 
-async function lower_risk_level() {
+function lower_risk_level() {
   warning_1_users.forEach(element => {
     if (timeout > 0)
     timeout--;

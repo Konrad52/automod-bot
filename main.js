@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+
 const censored_words = process.env.CENSORED_WORDS.split(',');
 
 client.on('ready', () => {

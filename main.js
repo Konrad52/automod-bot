@@ -36,34 +36,34 @@ client.on('message', msg => {
     if (msg.content.toLowerCase().includes(censored_words[i])) {
       needs_censor = true;
     }
-    if (needs_censor) {
-      warning_1_users.forEach(element1 => {
-        if (msg.author.toString() == element1.username && element1.timeout > 0) {
-          censor_level = 1;
-          element1.timeout = 3;
-        }
-      });
-      warning_2_users.forEach(element2 => {
-        if (msg.author.toString() == element2.username && element2.timeout > 0) {
-          censor_level = 2;
-          element2.timeout = 3;
-        }
-      });
-      muted_users.forEach(element3 => {
-        if (msg.author.toString() == element3.username && element3.timeout > 0) {
-          censor_level = 3;
-          element3.timeout = 3;
-        }
-      });
-    }
+  }
+
+  if (needs_censor) {
+    warning_1_users.forEach(element1 => {
+      if (msg.author.toString() == element1.username && element1.timeout > 0) {
+        censor_level = 1;
+        element1.timeout = 3;
+      }
+    });
+    warning_2_users.forEach(element2 => {
+      if (msg.author.toString() == element2.username && element2.timeout > 0) {
+        censor_level = 2;
+        element2.timeout = 3;
+      }
+    });
+    muted_users.forEach(element3 => {
+      if (msg.author.toString() == element3.username && element3.timeout > 0) {
+        censor_level = 3;
+        element3.timeout = 3;
+      }
+    });
+
     switch (censor_level) {
       case 0: warning_1_users.push({ username: msg.author, timeout: 3 });
       case 1: warning_2_users.push({ username: msg.author, timeout: 3 });
       case 2: muted_users.push    ({ username: msg.author, timeout: 3 });
     }
-  }
 
-  if (needs_censor) {
     msg.delete();
     
     switch (censor_level) {

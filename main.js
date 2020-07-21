@@ -20,6 +20,7 @@ async function lower_risk_level() {
     if (timeout > 0)
     timeout--;
   });
+  console.log('Lowered warning levels!');
 }
 
 setInterval(lower_risk_level, 60000);
@@ -39,38 +40,44 @@ client.on('message', msg => {
   }
 
   if (needs_censor) {
-    warning_1_users.forEach(element1 => {
-      if (msg.author.toString() == element1.username && element1.timeout > 0) {
+    warning_1_users.forEach(element => {
+      if (msg.author.toString() == element.username && element.timeout > 0) {
         censor_level = 1;
-        element1.timeout = 3;
+        element.timeout = 3;
       }
     });
-    warning_2_users.forEach(element2 => {
-      if (msg.author.toString() == element2.username && element2.timeout > 0) {
+    warning_2_users.forEach(element => {
+      if (msg.author.toString() == element.username && element.timeout > 0) {
         censor_level = 2;
-        element2.timeout = 3;
+        element.timeout = 3;
       }
     });
-    muted_users.forEach(element3 => {
-      if (msg.author.toString() == element3.username && element3.timeout > 0) {
+    muted_users.forEach(element => {
+      if (msg.author.toString() == element.username && element.timeout > 0) {
         censor_level = 3;
-        element3.timeout = 3;
+        element.timeout = 3;
       }
     });
 
     switch (censor_level) {
-      case 0: warning_1_users.push({ username: msg.author, timeout: 3 }); break;
-      case 1: warning_2_users.push({ username: msg.author, timeout: 3 }); break;
-      case 2: muted_users.push    ({ username: msg.author, timeout: 3 }); break;
+      case 0: {
+        warning_1_users.push({ username: msg.author, timeout: 3 }); 
+        msg.reply(process.env.RESPONSE_MSG_1); 
+        break;
+      }
+      case 1: {
+        warning_2_users.push({ username: msg.author, timeout: 3 }); 
+        msg.reply(process.env.RESPONSE_MSG_2); 
+        break;
+      }
+      case 2: {
+        muted_users.push    ({ username: msg.author, timeout: 3 }); 
+        msg.reply(process.env.RESPONSE_MSG_3); 
+        break;
+      }
     }
 
     msg.delete();
-    
-    switch (censor_level) {
-      case 0: msg.reply(process.env.RESPONSE_MSG_1); break;
-      case 1: msg.reply(process.env.RESPONSE_MSG_2); break;
-      case 2: msg.reply(process.env.RESPONSE_MSG_3); break;
-    }
   }
 });
 

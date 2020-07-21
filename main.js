@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const censored_words = [ 'fasz', 'pina', 'kurva', 'picsa', 'geci', 'köcsög', 'nyomorék' ]
+const censored_words = process.env.CENSORED_WORDS.split(',');
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -16,7 +16,7 @@ client.on('message', msg => {
 
   if (needs_censor) {
     msg.delete();
-    msg.reply('Tiltott szavakat használtál az üzenetetben! A megfelelő szóhasználatra kérlek figyelj oda.');
+    msg.reply(process.env.RESPONSE_MSG);
   }
 });
 

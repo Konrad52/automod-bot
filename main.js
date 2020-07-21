@@ -59,17 +59,17 @@ client.on('message', msg => {
     });
 
     switch (censor_level) {
-      case 0: warning_1_users.push({ username: msg.author, timeout: 3 });
-      case 1: warning_2_users.push({ username: msg.author, timeout: 3 });
-      case 2: muted_users.push    ({ username: msg.author, timeout: 3 });
+      case 0: warning_1_users.push({ username: msg.author, timeout: 3 }); break;
+      case 1: warning_2_users.push({ username: msg.author, timeout: 3 }); break;
+      case 2: muted_users.push    ({ username: msg.author, timeout: 3 }); break;
     }
 
     msg.delete();
     
     switch (censor_level) {
-      case 0: msg.reply(process.env.RESPONSE_MSG_1);
-      case 1: msg.reply(process.env.RESPONSE_MSG_2);
-      case 2: msg.reply(process.env.RESPONSE_MSG_3);
+      case 0: msg.reply(process.env.RESPONSE_MSG_1); break;
+      case 1: msg.reply(process.env.RESPONSE_MSG_2); break;
+      case 2: msg.reply(process.env.RESPONSE_MSG_3); break;
     }
   }
 });

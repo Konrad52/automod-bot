@@ -6,8 +6,8 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-  if (msg.content === 'ping') {
-    msg.reply('pong');
+  if (msg.content.includes('fasz')) {
+    msg.reply('Enyje, nem szabad így beszélni.');
   }
 });
 

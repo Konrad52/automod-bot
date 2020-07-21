@@ -5,6 +5,7 @@ const censored_words = process.env.CENSORED_WORDS.split(',');
 
 var warning_1_users = [ { username: '', timeout: 3 } ];
 var warning_2_users = [ { username: '', timeout: 3 } ];
+var warning_3_users = [ { username: '', timeout: 3 } ];
 var muted_users     = [ { username: '', timeout: 3 } ];
 
 function lower_risk_level() {
@@ -13,6 +14,10 @@ function lower_risk_level() {
     element.timeout--;
   });
   warning_2_users.forEach(element => {
+    if (element.timeout > 0)
+    element.timeout--;
+  });
+  warning_3_users.forEach(element => {
     if (element.timeout > 0)
     element.timeout--;
   });
@@ -48,29 +53,30 @@ client.on('message', msg => {
   if (needs_censor) {
     warning_1_users.forEach(element => {
       if (msg.author.toString() == element.username) {
-        if (element.timeout > 0) {
-          censor_level = 1;
-          element.timeout = 3;
-        }
+        censor_level = 1;
         array_level = 1;
+        element.timeout = 3;
       }
     });
     warning_2_users.forEach(element => {
       if (msg.author.toString() == element.username) {
-        if (element.timeout > 0) {
-          censor_level = 2;
-          element.timeout = 3;
-        }
+        censor_level = 2;
+        element.timeout = 3;
         array_level = 2;
+      }
+    });
+    warning_3_users.forEach(element => {
+      if (msg.author.toString() == element.username) {
+        censor_level = 3;
+        element.timeout = 3;
+        array_level = 3;
       }
     });
     muted_users.forEach(element => {
       if (msg.author.toString() == element.username) {
-        if (element.timeout > 0) {
-          censor_level = 3;
-          element.timeout = 3;
-        }
-        array_level = 3;
+        censor_level = 4;
+        element.timeout = 3;
+        array_level = 4;
       }
     });
 
@@ -91,8 +97,15 @@ client.on('message', msg => {
       }
       case 2: {
         if (array_level < 3)
-          muted_users.push({ username: msg.author.toString(), timeout: 3 }); 
+          warning_3_users.push({ username: msg.author.toString(), timeout: 3 }); 
         msg.reply(process.env.RESPONSE_MSG_3); 
+        console.log(warning_3_users.toString());
+        break;
+      }
+      case 3: {
+        if (array_level < 4)
+          muted_users.push({ username: msg.author.toString(), timeout: 3 }); 
+        msg.reply(process.env.RESPONSE_MSG_4); 
         console.log(muted_users.toString());
         break;
       }

@@ -1,0 +1,8 @@
+{
+  "name": "automod-bot",
+  "description": "An auto moderation Discord bot.",
+  "version": "1.0.0",
+  "engines": {
+    "node": "12.x"
+  }
+}

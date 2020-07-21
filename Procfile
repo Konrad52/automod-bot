@@ -1,2 +1,2 @@
-web npm run page.js
+web npm run page
 worker npm start

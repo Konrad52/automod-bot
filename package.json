@@ -10,6 +10,7 @@
     "request": "2.81.0"
   },
   "scripts": {
+    "page" : "node page.js",
     "start": "node main.js"
   }
 }

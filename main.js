@@ -35,7 +35,8 @@ client.on('message', msg => {
   for (let i = 0; i < censored_words.length; i++) {
     if (msg.content.toLowerCase().includes(censored_words[i])) {
       needs_censor = true;
-
+    }
+    if (needs_censor) {
       warning_1_users.forEach(element1 => {
         if (msg.author.toString() == element1.username && element1.timeout > 0) {
           censor_level = 1;
@@ -54,12 +55,11 @@ client.on('message', msg => {
           element3.timeout = 3;
         }
       });
-
-      switch (censor_level) {
-        case 0: warning_1_users.push({ username: msg.author, timeout: 3 });
-        case 1: warning_2_users.push({ username: msg.author, timeout: 3 });
-        case 2: muted_users.push    ({ username: msg.author, timeout: 3 });
-      }
+    }
+    switch (censor_level) {
+      case 0: warning_1_users.push({ username: msg.author, timeout: 3 });
+      case 1: warning_2_users.push({ username: msg.author, timeout: 3 });
+      case 2: muted_users.push    ({ username: msg.author, timeout: 3 });
     }
   }
 

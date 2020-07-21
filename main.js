@@ -10,7 +10,7 @@ client.on('message', msg => {
   var needs_censor = false;
 
   for (let i = 0; i < censored_words.length; i++) {
-    if (msg.content.includes(censored_words[i])) 
+    if (msg.content.toLowerCase().includes(censored_words[i])) 
       needs_censor = true;
   }
 

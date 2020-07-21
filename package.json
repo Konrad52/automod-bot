@@ -3,7 +3,9 @@
   "description": "An auto moderation Discord bot.",
   "version": "1.0.0",
   "engines": {
-    "node": "12.x",
+    "node": "12.x"
+  },
+  "dependencies": {
     "discord.js": "12.x",
     "request": "2.81.0"
   },

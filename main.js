@@ -15,7 +15,7 @@ client.on('message', msg => {
   }
 
   if (needs_censor) {
-    msg.delete(1000);
+    msg.delete();
     msg.reply('Tiltott szavakat használtál az üzenetetben! A megfelelő szóhasználatra kérlek figyelj oda.');
   }
 });

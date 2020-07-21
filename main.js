@@ -68,18 +68,21 @@ client.on('message', msg => {
         warning_1_users.push({ username: msg.author, timeout: 3 }); 
         msg.reply(process.env.RESPONSE_MSG_1); 
         console.log('Added to w1!');
+        console.log(warning_1_users.toString());
         break;
       }
       case 1: {
         warning_2_users.push({ username: msg.author, timeout: 3 }); 
         msg.reply(process.env.RESPONSE_MSG_2); 
         console.log('Added to w2!');
+        console.log(warning_2_users.toString());
         break;
       }
       case 2: {
         muted_users.push    ({ username: msg.author, timeout: 3 }); 
         msg.reply(process.env.RESPONSE_MSG_3); 
         console.log('Added to mt!');
+        console.log(muted_users.toString());
         break;
       }
     }

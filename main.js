@@ -9,21 +9,29 @@ var warning_3_users = [ { username: '', timeout: 3 } ];
 var muted_users     = [ { username: '', timeout: 3 } ];
 
 function lower_risk_level() {
-  warning_1_users.forEach(element => {
+  warning_1_users.forEach(function(element, index, object) {
     if (element.timeout > 0)
-    element.timeout--;
+      element.timeout--;
+    else
+      object.splice(index, 1);
   });
-  warning_2_users.forEach(element => {
+  warning_2_users.forEach(function(element, index, object) {
     if (element.timeout > 0)
-    element.timeout--;
+      element.timeout--;
+    else
+      object.splice(index, 1);
   });
-  warning_3_users.forEach(element => {
+  warning_3_users.forEach(function(element, index, object) {
     if (element.timeout > 0)
-    element.timeout--;
+      element.timeout--;
+    else
+      object.splice(index, 1);
   });
-  muted_users.forEach(element => {
+  muted_users.forEach(function(element, index, object) {
     if (element.timeout > 0)
-    element.timeout--;
+      element.timeout--;
+    else
+      object.splice(index, 1);
   });
 }
 
@@ -85,28 +93,24 @@ client.on('message', msg => {
         if (array_level < 1)
           warning_1_users.push({ username: msg.author.toString(), timeout: 3 }); 
         msg.reply(process.env.RESPONSE_MSG_1); 
-        console.log(warning_1_users.toString());
         break;
       }
       case 1: {
         if (array_level < 2)
           warning_2_users.push({ username: msg.author.toString(), timeout: 3 }); 
         msg.reply(process.env.RESPONSE_MSG_2); 
-        console.log(warning_2_users.toString());
         break;
       }
       case 2: {
         if (array_level < 3)
           warning_3_users.push({ username: msg.author.toString(), timeout: 3 }); 
         msg.reply(process.env.RESPONSE_MSG_3); 
-        console.log(warning_3_users.toString());
         break;
       }
       case 3: {
         if (array_level < 4)
           muted_users.push({ username: msg.author.toString(), timeout: 3 }); 
         msg.reply(process.env.RESPONSE_MSG_4); 
-        console.log(muted_users.toString());
         break;
       }
     }

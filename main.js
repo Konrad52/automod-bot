@@ -135,7 +135,7 @@ client.on('message', msg => {
       .setTimestamp()
       .setFooter('- Automoderátor bot');
 
-    channel.send(embed);
+    msg.reply(embed);
 
     msg.delete();
   }

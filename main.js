@@ -35,10 +35,25 @@ function lower_risk_level() {
   });
 }
 
-setInterval(lower_risk_level, 60000);
+setInterval(lower_risk_level, 1000 * 60);
+
+function dialy_report() {
+  console.log('');
+  var muted_users_str;
+  muted_users.forEach(element => {
+    muted_users_str += await client.fetch(element.username) + ' ';
+  });
+  console.log('===');
+  console.log('Muted users: ' + muted_users_str);
+  console.log('===');
+  console.log('');
+}
+
+setInterval(dialy_report, 1000 * 60 * 10);
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  dialy_report();
 });
 
 client.on('message', msg => {
@@ -88,32 +103,43 @@ client.on('message', msg => {
       }
     });
 
+    var reply;
+
     switch (censor_level) {
       case 0: {
         if (array_level < 1)
           warning_1_users.push({ username: msg.author.toString(), timeout: 3 }); 
-        msg.reply(process.env.RESPONSE_MSG_1); 
+        reply = process.env.RESPONSE_MSG_1; 
         break;
       }
       case 1: {
         if (array_level < 2)
           warning_2_users.push({ username: msg.author.toString(), timeout: 3 }); 
-        msg.reply(process.env.RESPONSE_MSG_2); 
+        reply = process.env.RESPONSE_MSG_2; 
         break;
       }
       case 2: {
         if (array_level < 3)
           warning_3_users.push({ username: msg.author.toString(), timeout: 3 }); 
-        msg.reply(process.env.RESPONSE_MSG_3); 
+        reply = process.env.RESPONSE_MSG_3; 
         break;
       }
       case 3: {
         if (array_level < 4)
           muted_users.push({ username: msg.author.toString(), timeout: 3 }); 
-        msg.reply(process.env.RESPONSE_MSG_4); 
+        reply = process.env.RESPONSE_MSG_4; 
         break;
       }
     }
+
+    var embed = new Discord.MessageEmbed()
+      .setColor('#ffaa00')
+      .setAuthor('Szabálysértés')
+      .setDescription(reply)
+      .setTimestamp()
+      .setFooter('- Automoderátor bot');
+
+    channel.send(embed);
 
     msg.delete();
   }

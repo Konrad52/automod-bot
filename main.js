@@ -38,15 +38,17 @@ function lower_risk_level() {
 setInterval(lower_risk_level, 1000 * 60);
 
 function dialy_report() {
-  console.log('');
-  var muted_users_str;
-  muted_users.forEach(element => {
-    muted_users_str += await client.fetch(element.username) + ' ';
+  return new Promise(() => {
+    console.log('');
+    var muted_users_str;
+    muted_users.forEach(element => {
+      muted_users_str += await client.fetch(element.username) + ' ';
+    });
+    console.log('===');
+    console.log('Muted users: ' + muted_users_str);
+    console.log('===');
+    console.log('');
   });
-  console.log('===');
-  console.log('Muted users: ' + muted_users_str);
-  console.log('===');
-  console.log('');
 }
 
 setInterval(dialy_report, 1000 * 60 * 10);

@@ -135,7 +135,8 @@ client.on('message', msg => {
       .setTimestamp()
       .setFooter('- Automoderátor bot');
 
-    msg.reply(embed);
+    if (censor_level < 4)
+      msg.send(embed);
 
     msg.delete();
   }

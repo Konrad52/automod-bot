@@ -71,7 +71,7 @@ client.on('message', msg => {
   });
   
   excluded_roles.forEach(roleid => {
-    if (msg.member.roles.some(role => role.id == roleid))
+    if (msg.member.roles.cache.has(roleid))
       needs_censor = false;
   });
 

@@ -136,7 +136,7 @@ client.on('message', msg => {
       .setFooter('- Automoderátor bot');
 
     if (censor_level < 4)
-      msg.send(embed);
+      msg.reply(embed);
 
     msg.delete();
   }

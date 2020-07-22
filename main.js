@@ -70,8 +70,8 @@ client.on('message', msg => {
     }
   });
   
-  excluded_roles.forEach(role => {
-    if (msg.member.roles.has(role))
+  excluded_roles.forEach(roleid => {
+    if (msg.member.roles.some(role => role.id == roleid))
       needs_censor = false;
   });
 

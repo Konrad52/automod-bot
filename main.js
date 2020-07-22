@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const censored_words = process.env.CENSORED_WORDS.split(',');
+const excluded_roles = process.env.EXCLUDED_ROLES.split(',');
 
 var warning_1_users = [ { username: '', timeout: 3 } ];
 var warning_2_users = [ { username: '', timeout: 3 } ];
@@ -67,6 +68,11 @@ client.on('message', msg => {
     if (msg.author.toString() == element.username && element.timeout > 0) {
       needs_censor = true;
     }
+  });
+  
+  excluded_roles.forEach(role => {
+    if (msg.member.roles.has(role))
+      needs_censor = false;
   });
 
   if (needs_censor) {

@@ -37,11 +37,11 @@ function lower_risk_level() {
 
 setInterval(lower_risk_level, 1000 * 60);
 
-async function dialy_report() {
+function dialy_report() {
   console.log('');
   var muted_users_str;
   muted_users.forEach(element => {
-    muted_users_str += await client.fetch(element.username) + ' ';
+    muted_users_str += client.fetch(element.username) + ' ';
   });
   console.log('===');
   console.log('Muted users: ' + muted_users_str);

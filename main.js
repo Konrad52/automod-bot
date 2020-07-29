@@ -63,8 +63,8 @@ client.on('message', msg => {
           var timeout = msg.content.split(' ');
           var timeout_int = parseInt(timeout[2]);
           muted_users.push({ username: msg.mentions.users.frst().toString(), timeout: timeout_int }); 
-        } catch {
-          print('Failed to mute.');
+        } catch (error) {
+          console.error(error);
         }
       }
     }

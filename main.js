@@ -63,7 +63,7 @@ client.on('message', msg => {
           var timeout = msg.content.split(' ');
           var timeout_int = parseInt(timeout[2]);
           muted_users.push({ username: msg.mentions.users.first().toString(), timeout: timeout_int }); 
-          msg.reply('A ' + timeout[1] + ' felhasználót sikeresen elnémítottad ' + timeout[2] + ' percre!');
+          msg.reply('A ' + timeout[1] + ' felhasználót sikeresen elnémítottad `' + timeout[2] + '` percre!');
         } catch (error) {
           console.error(error);
           msg.reply('A felhasználót nem sikerült elnémítani.');

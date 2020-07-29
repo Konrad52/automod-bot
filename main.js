@@ -62,7 +62,7 @@ client.on('message', msg => {
         try {
           var timeout = msg.content.split(' ');
           var timeout_int = parseInt(timeout[2]);
-          muted_users.push({ username: msg.mentions.users.frst().toString(), timeout: timeout_int }); 
+          muted_users.push({ username: msg.mentions.users.first().toString(), timeout: timeout_int }); 
         } catch (error) {
           console.error(error);
         }

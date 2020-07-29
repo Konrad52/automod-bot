@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const censored_words = process.env.CENSORED_WORDS.split(',');
-const user_roles     = process.enc.USER_ROLES.split(',');
+const user_roles     = process.env.USER_ROLES.split(',');
 const excluded_roles = process.env.EXCLUDED_ROLES.split(',');
 
 var warning_1_users = [ { username: '', timeout: 3 } ];

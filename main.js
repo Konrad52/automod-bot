@@ -70,7 +70,16 @@ client.on('message', msg => {
         }
       } else
       if (msg.content.startsWith('!unmute ')) {
-
+        muted_users.forEach(function(element, index, object) {
+          if (element.username = msg.mentions.users.first().toString()) 
+          {
+            object.splice(index, 1);
+            var timeout = msg.content.split(' ');
+            msg.reply('A ' + timeout[1] + ' felhasználó némítását sikeresen feloldottad.');
+          } else {
+            msg.reply('A megadott felhasználó némításának feloldása sikertelen volt.');
+          }
+        });
       }
     }
   });

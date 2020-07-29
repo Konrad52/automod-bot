@@ -74,6 +74,7 @@ client.on('message', msg => {
         muted_users.forEach(function(element, index, object) {
           if (element.username = msg.mentions.users.first().toString()) 
           {
+            element.timeout = 0;
             object.splice(index, 1);
             var timeout = msg.content.split(' ');
             msg.reply('A ' + timeout[1] + ' felhasználó némítását sikeresen feloldottad.');

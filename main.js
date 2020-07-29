@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const censored_words = process.env.CENSORED_WORDS.split(',');
+const user_roles     = process.enc.USER_ROLES.split(',');
 const excluded_roles = process.env.EXCLUDED_ROLES.split(',');
 
 var warning_1_users = [ { username: '', timeout: 3 } ];
@@ -54,6 +55,15 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+  user_roles.forEach(roleid => {
+    if (msg.member.roles.cache.has(roleid))
+    {
+      if (msg.content.startsWith('!mute ')) {
+        muted_users.push({ username: msg.mentions.users.first().toString(), timeout: 3 }); 
+      }
+    }
+  });
+
   var needs_censor = false;
   var censor_level = 0;
   var array_level  = 0;

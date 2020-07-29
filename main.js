@@ -64,8 +64,8 @@ client.on('message', msg => {
           var timeout_int = parseInt(timeout[2]);
           muted_users.push({ username: msg.mentions.users.first().toString(), timeout: timeout_int }); 
           let {guild} = msg;
-          msg.reply('A felhasználót sikeresen elnémítottad ' + timeout + ' percre!');
-          msg.mentions.users.first().send('A ' + guild.name + ' szerveren ' + timeout + ' perces némítást kaptál!');
+          msg.reply('A felhasználót sikeresen elnémítottad ' + timeout[2] + ' percre!');
+          msg.mentions.users.first().send('A ' + guild.name + ' szerveren ' + timeout[2] + ' perces némítást kaptál!');
         } catch (error) {
           console.error(error);
           msg.reply('A felhasználót nem sikerült elnémítani.');

@@ -194,7 +194,7 @@ client.on('message', msg => {
 client.on('voiceStateUpdate', (oldState, newState) => {
   let excluded = false;
   ping_roles.forEach(role => {
-    if (newState.member.roles.cache.find(memeber_role => memeber_role.id == role) != undefined) {
+    if (member.roles.cache.has(role)) {
       excluded = true;
     }
   });

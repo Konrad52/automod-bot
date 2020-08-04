@@ -4,6 +4,7 @@ const client = new Discord.Client();
 const censored_words = process.env.CENSORED_WORDS.split(',');
 const user_roles     = process.env.USER_ROLES    .split(',');
 const excluded_roles = process.env.EXCLUDED_ROLES.split(',');
+const ping_roles     = process.env.PING_ROLES    .split(',');
 const pings = [];
 
 let ping_channels = process.env.PING_CHANNELS.split(',');
@@ -191,7 +192,13 @@ client.on('message', msg => {
 });
 
 client.on('voiceStateUpdate', (oldState, newState) => {
-  if (newState != undefined) {
+  let excluded = false;
+  ping_roles.forEach(role => {
+    if (newState.member.roles.cache.find(memeber_role => memeber_role == role) != undefined) {
+      excluded = true;
+    }
+  });
+  if (newState != undefined && !excluded) {
     pings.forEach(ping => {
       if (newState.channelID == ping.voice) {
         const channel = newState.guild.client.channels.cache.find(channel => channel.id == ping.text);

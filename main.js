@@ -4,6 +4,13 @@ const client = new Discord.Client();
 const censored_words = process.env.CENSORED_WORDS.split(',');
 const user_roles     = process.env.USER_ROLES    .split(',');
 const excluded_roles = process.env.EXCLUDED_ROLES.split(',');
+const pings = [];
+
+let ping_channels = process.enc.PING_CHANNELS.split(',');
+ping_channels.forEach(ping => {
+  let ping_split = ping_channels[ping].split('|');
+  pings.push({voice: ping_split[0], text: ping_split[1]});
+});
 
 var warning_1_users = [ { username: '', timeout: 3 } ];
 var warning_2_users = [ { username: '', timeout: 3 } ];
@@ -178,6 +185,17 @@ client.on('message', msg => {
       msg.reply(embed);
 
     msg.delete();
+  }
+});
+
+client.on('voiceStateUpdate', (oldState, newState) => {
+  if (newState != undefined) {
+    pings.forEach(ping => {
+      if (newState.channelID == pings[ping].voice) {
+        const channel = newState.guild.client.channels.cache.find(channel => channel.id == pings[ping].text);
+        channel.send('A <@' + newState.member.id + '> belépett a <#' + newState.channelID + '> szobába!');
+      }
+    });
   }
 });
 

@@ -8,7 +8,7 @@ const pings = [];
 
 let ping_channels = process.env.PING_CHANNELS.split(',');
 ping_channels.forEach(ping => {
-  let ping_split = ping_channels[ping].split('|');
+  let ping_split = ping.split('|');
   pings.push({voice: ping_split[0], text: ping_split[1]});
 });
 
@@ -191,8 +191,8 @@ client.on('message', msg => {
 client.on('voiceStateUpdate', (oldState, newState) => {
   if (newState != undefined) {
     pings.forEach(ping => {
-      if (newState.channelID == pings[ping].voice) {
-        const channel = newState.guild.client.channels.cache.find(channel => channel.id == pings[ping].text);
+      if (newState.channelID == ping.voice) {
+        const channel = newState.guild.client.channels.cache.find(channel => channel.id == ping.text);
         channel.send('A <@' + newState.member.id + '> belépett a <#' + newState.channelID + '> szobába!');
       }
     });

@@ -6,7 +6,7 @@ const user_roles     = process.env.USER_ROLES    .split(',');
 const excluded_roles = process.env.EXCLUDED_ROLES.split(',');
 const pings = [];
 
-let ping_channels = process.enc.PING_CHANNELS.split(',');
+let ping_channels = process.env.PING_CHANNELS.split(',');
 ping_channels.forEach(ping => {
   let ping_split = ping_channels[ping].split('|');
   pings.push({voice: ping_split[0], text: ping_split[1]});

@@ -9,7 +9,7 @@ const pings = [];
 let ping_channels = process.env.PING_CHANNELS.split(',');
 ping_channels.forEach(ping => {
   let ping_split = ping.split('|');
-  pings.push({voice: ping_split[0], text: ping_split[1]});
+  pings.push({voice: ping_split[0], text: ping_split[1], role: ping_split[2]});
 });
 
 var warning_1_users = [ { username: '', timeout: 3 } ];
@@ -193,7 +193,7 @@ client.on('voiceStateUpdate', (oldState, newState) => {
     pings.forEach(ping => {
       if (newState.channelID == ping.voice) {
         const channel = newState.guild.client.channels.cache.find(channel => channel.id == ping.text);
-        channel.send('A <@' + newState.member.id + '> belépett a <#' + newState.channelID + '> szobába!');
+        channel.send('<@&' + ping.role + '>, a <@' + newState.member.id + '> nevű felhasználó belépett a `#' + newState.channel.name + '` szobába!');
       }
     });
   }

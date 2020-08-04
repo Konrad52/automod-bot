@@ -202,7 +202,7 @@ client.on('voiceStateUpdate', (oldState, newState) => {
     pings.forEach(ping => {
       if (newState.channelID == ping.voice) {
         const channel = newState.guild.client.channels.cache.find(channel => channel.id == ping.text);
-        channel.send('<@&' + ping.role + '>, a <@' + newState.member.id + '> nevű felhasználó belépett a `#' + newState.channel.name + '` szobába!');
+        channel.send('<@&' + ping.role + '>, <@' + newState.member.id + '> felhasználó belépett a `#' + newState.channel.name + '` szobába, valamelyikőtök kérdezze meg tőle, hogy mit szeretne!');
       }
     });
   }

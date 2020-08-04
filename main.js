@@ -62,6 +62,8 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+  if (msg.member == null)
+    return;
   user_roles.forEach(roleid => {
     if (msg.member.roles.cache.has(roleid))
     {

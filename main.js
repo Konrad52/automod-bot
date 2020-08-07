@@ -214,12 +214,12 @@ client.on('guildBanAdd', function(guild, user) {
   switch (guild.id) {
     case '729256763261714503': {
       console.log('Teszt szerver');
-      guild.channels.cache.find(channel => channel.id == '735105412025679943').send('```diff\n- Vezetőség által többszöri figyelmeztetés után végleg eltávolítottuk <@' + user.id + '>-t a szerverről.```');
+      guild.channels.cache.find(channel => channel.id == '735105412025679943').send('Vezetőség által többszöri figyelmeztetés után végleg eltávolítottuk <@' + user.id + '>-t a szerverről.');
       break;
     }
     case '461172935282130964': {
       console.log('Teszt szerver');
-      guild.channels.cache.find(channel => channel.id == '699652015227273276').send('```diff\n- Vezetőség által többszöri figyelmeztetés után végleg eltávolítottuk <@' + user.id + '>-t a szerverről.```');
+      guild.channels.cache.find(channel => channel.id == '699652015227273276').send('Vezetőség által többszöri figyelmeztetés után végleg eltávolítottuk <@' + user.id + '>-t a szerverről.');
       break;
     }
   }

@@ -43,9 +43,9 @@ function lower_risk_level() {
     else
       object.splice(index, 1);
   });
+  setTimeout(lower_risk_level, 1000 * 60);
 }
-
-setInterval(lower_risk_level, 1000 * 60);
+lower_risk_level();
 
 function dialy_report() {
   console.log('');
@@ -53,9 +53,8 @@ function dialy_report() {
   console.log('Muted user count: ' + muted_users.length);
   console.log('===');
   console.log('');
+  setTimeout(dialy_report, 1000 * 60 * 10);
 }
-
-setInterval(dialy_report, 1000 * 60 * 10);
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -65,6 +64,7 @@ client.on('ready', () => {
 client.on('message', msg => {
   if (msg.member == null)
     return;
+
   user_roles.forEach(roleid => {
     if (msg.member.roles.cache.has(roleid))
     {
@@ -187,6 +187,7 @@ client.on('message', msg => {
     if (censor_level < 4)
       msg.reply(embed);
 
+    console.log('Egy üzenetet töröltem: ' + msg.author.username + ' - ' + msg.content);
     msg.delete();
   }
 });
@@ -205,6 +206,18 @@ client.on('voiceStateUpdate', (oldState, newState) => {
         channel.send('<@&' + ping.role + '>, <@' + newState.member.id + '> felhasználó belépett a `#' + newState.channel.name + '` szobába, valamelyikőtök kérdezze meg tőle, hogy mit szeretne!');
       }
     });
+  }
+});
+
+client.on('guildBanAdd', function(guild, user) {
+  switch (guild.id) {
+    case 729256763261714503: {
+      guild.channels.get('735105412025679943').send('<@' + user.id + '> felhasználó kapta a bannkalapácsot!');
+      break;
+    }
+    case 461172935282130964: {
+      break;
+    }
   }
 });
 

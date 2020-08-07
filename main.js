@@ -212,12 +212,12 @@ client.on('voiceStateUpdate', (oldState, newState) => {
 client.on('guildBanAdd', function(guild, user) {
   console.log('Ban');
   switch (guild.id) {
-    case 729256763261714503: {
+    case '729256763261714503': {
       console.log('Teszt szerver');
       client.channels.get('735105412025679943').send('<@' + user.id + '> felhasználó kapta a bannkalapácsot!');
       break;
     }
-    case 461172935282130964: {
+    case '461172935282130964': {
       break;
     }
   }

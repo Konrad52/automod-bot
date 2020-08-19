@@ -71,10 +71,19 @@ client.on('message', msg => {
       if (msg.content.startsWith('!mute ')) {
         try {
           var shouldDoIt = true;
+          var personToCheck = msg.mentions.users.first().id.toString();
+          console.log(personToCheck);
           excluded_roles.forEach(roleid => {
-            if (msg.guild.members.cache.find(user => user.id.toString() == msg.mentions.users.first().id.toString()).roles.cache.find(role => role.id.toString() == roleid)) {
-              msg.reply('Ilyen magas rangú felhaszálót nem lehet elnémítani.');
-              shouldDoIt = false;
+            console.log('RoleID: ' + roleid);
+            var foundUser = msg.guild.members.cache.find(user => user.id.toString() == personToCheck);
+            if (foundUser) {
+              console.log(foundUser.id.toString());
+              var excludedRole = foundUser.roles.cache.find(role => role.id.toString() == roleid);
+              if (excludedRole) {
+                console.log(excludedRole);
+                msg.reply('Ilyen magas rangú felhaszálót nem lehet elnémítani.');
+                shouldDoIt = false;
+              }
             }
           });
           if (shouldDoIt) {

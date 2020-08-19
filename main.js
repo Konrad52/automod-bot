@@ -72,7 +72,7 @@ client.on('message', msg => {
         try {
           var shouldDoIt = true;
           excluded_roles.forEach(roleid => {
-            if (msg.guild.members.cache.find(user => user.id == msg.mentions.users.first().id).roles.cache.find(role => role.id == roleid)) {
+            if (msg.guild.members.cache.find(user => user.id.toString() == msg.mentions.users.first().id.toString()).roles.cache.find(role => role.id.toString() == roleid)) {
               msg.reply('Ilyen magas rangú felhaszálót nem lehet elnémítani.');
               shouldDoIt = false;
             }

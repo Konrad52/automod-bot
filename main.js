@@ -70,10 +70,19 @@ client.on('message', msg => {
     {
       if (msg.content.startsWith('!mute ')) {
         try {
-          var timeout = msg.content.split(' ');
-          var timeout_int = parseInt(timeout[2]);
-          muted_users.push({ username: msg.mentions.users.first().toString(), timeout: timeout_int }); 
-          msg.reply('A ' + timeout[1] + ' felhasználót sikeresen elnémítottad `' + timeout[2] + '` percre!');
+          var shouldDoIt = true;
+          excluded_roles.forEach(roleid => {
+            if (msg.guild.members.cache.find(user => user.id == msg.mentions.users.first().id).roles.cache.find(role => role.id == roleid)) {
+              msg.reply('Ilyen magas rangú felhaszálót nem lehet elnémítani.');
+              shouldDoIt = false;
+            }
+          });
+          if (shouldDoIt) {
+            var timeout = msg.content.split(' ');
+            var timeout_int = parseInt(timeout[2]);
+            muted_users.push({ username: msg.mentions.users.first().toString(), timeout: timeout_int }); 
+            msg.reply('A ' + timeout[1] + ' felhasználót sikeresen elnémítottad `' + timeout[2] + '` percre!');
+          }
         } catch (error) {
           console.error(error);
           msg.reply('A felhasználót nem sikerült elnémítani.');

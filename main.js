@@ -236,29 +236,29 @@ client.on('guildBanAdd', function(guild, user) {
   }
 });
 
-client.on('guildMemberAdd', function(guild, user) {
+client.on('guildMemberAdd', member => {
   console.log('MemberAdd');
-  switch (guild.id) {
+  switch (member.guild.id) {
     case '729256763261714503': {
-      guild.channels.cache.find(channel => channel.id == '735105412025679943').send('Üdvözlünk a TESZT Hivatalos Discord szerverén! <@' + user.id + '> csatlakozott a szerverhez!');
+      member.guild.channels.cache.find(channel => channel.id == '735105412025679943').send('Üdvözlünk a TESZT Hivatalos Discord szerverén! <@' + member.user.id + '> csatlakozott a szerverhez!');
       break;
     }
     case '461172935282130964': {
-      guild.channels.cache.find(channel => channel.id == '720738865517690931').send('Üdvözlünk a GLADIÁTOR MÓD Hivatalos Discord szerverén! <@' + user.id + '> csatlakozott a szerverhez!');
+      member.guild.channels.cache.find(channel => channel.id == '720738865517690931').send('Üdvözlünk a GLADIÁTOR MÓD Hivatalos Discord szerverén! <@' + member.user.id + '> csatlakozott a szerverhez!');
       break;
     }
   }
 });
 
-client.on('guildMemberRemove', function(guild, user) {
+client.on('guildMemberRemove', member => {
   console.log('MemberRemove');
-  switch (guild.id) {
+  switch (member.guild.id) {
     case '729256763261714503': {
-      guild.channels.cache.find(channel => channel.id == '733055319483088928').send('<@' + user.id + '> kilépett, mert egy pöcskarika.');
+      member.guild.channels.cache.find(channel => channel.id == '733055319483088928').send('<@' + member.user.id + '> kilépett, mert egy pöcskarika.');
       break;
     }
     case '461172935282130964': {
-      guild.channels.cache.find(channel => channel.id == '725403466649829458').send('<@' + user.id + '> kilépett, mert egy pöcskarika.');
+      member.guild.channels.cache.find(channel => channel.id == '725403466649829458').send('<@' + member.user.id + '> kilépett, mert egy pöcskarika.');
       break;
     }
   }

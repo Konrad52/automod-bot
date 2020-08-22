@@ -237,6 +237,7 @@ client.on('guildBanAdd', function(guild, user) {
 });
 
 client.on('guildMemberAdd', function(guild, user) {
+  console.log('MemberAdd');
   switch (guild.id) {
     case '729256763261714503': {
       guild.channels.cache.find(channel => channel.id == '735105412025679943').send('Üdvözlünk a TESZT Hivatalos Discord szerverén! <@' + user.id + '> csatlakozott a szerverhez!');
@@ -250,6 +251,7 @@ client.on('guildMemberAdd', function(guild, user) {
 });
 
 client.on('guildMemberRemove', function(guild, user) {
+  console.log('MemberRemove');
   switch (guild.id) {
     case '729256763261714503': {
       guild.channels.cache.find(channel => channel.id == '733055319483088928').send('<@' + user.id + '> kilépett, mert egy pöcskarika.');

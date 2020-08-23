@@ -11,8 +11,6 @@ function SaveFile() {
         id: '5f429aa4514ec5112d0ca67b',
         data: database,
         versioning: false
-    }).then(json => {
-        console.log(json);
     });
 }
 
@@ -21,7 +19,6 @@ function LoadFile() {
         id: '5f429aa4514ec5112d0ca67b',
         version: 'latest'
     }).then(json => {
-        console.log(json);
         database = json;
     });
 }
@@ -37,6 +34,11 @@ client.on('message', msg => {
 
     if (msg.content.startsWith('!')) {
         if (msg.content.startsWith('!shophere')) {
+            msg.channel.messages.fetch(database['messageId']).then(oldMessage => {
+                if (oldMessage != undefined)
+                    oldMessage.delete();
+            });
+
             const embed = new Discord.MessageEmbed()
                 .setColor('#ffaa00')
                 .setTitle('Üdvözöllek!')
@@ -60,6 +62,8 @@ client.on('message', msg => {
                 .setFooter('- Árus');
 
             msg.channel.send(embed).then(message => {
+                database['messageId'] = message.id.toString();
+
                 message.react('747106274885238935').then(() =>
                 message.react('747103629810466896').then(() =>
                 message.react('747103629860929617').then(() =>

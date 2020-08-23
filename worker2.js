@@ -61,7 +61,7 @@ client.on('message', msg => {
 
             msg.delete();
         } else if (msg.content.startsWith('!give')) {
-            if (msg.mentions.users.first() == undefined) {
+            if (msg.mentions.users.size == 0) {
                 
                 var embed = new Discord.MessageEmbed()
                 .setColor('#aa0000')
@@ -101,7 +101,7 @@ client.on('message', msg => {
 
             msg.channel.send(embed);
         } else if (msg.content.startsWith('!take')) {
-            if (msg.mentions.users.first() == undefined) {
+            if (msg.mentions.users.size == 0) {
                 
                 var embed = new Discord.MessageEmbed()
                 .setColor('#aa0000')

@@ -61,7 +61,7 @@ client.on('message', msg => {
 
             msg.delete();
         } else if (msg.content.startsWith('!give')) {
-            if (msg.mentions.users.size == 0) {
+            if (msg.mentions.users.array().length == 0) {
                 
                 var embed = new Discord.MessageEmbed()
                 .setColor('#aa0000')
@@ -71,37 +71,35 @@ client.on('message', msg => {
                 .setFooter('- Árus');
 
                 msg.channel.send(embed);
-                
-                return;
-            }
-
-            var userId = msg.mentions.users.first().id.toString();
-
-            var embed;
-
-            if (database[userId] == undefined || database[userId] == 0) {
-                database[userId] = 1;
-                
-                SaveFile();
-
-                embed = new Discord.MessageEmbed()
-                .setColor('#00aa00')
-                .setTitle('Sikeres hozzáadás!')
-                .setDescription(`Mostmár <@`+ userId +`> felhaszáló rendelkezik egy drágakővel!`)
-                .setTimestamp()
-                .setFooter('- Árus');
             } else {
-                embed = new Discord.MessageEmbed()
-                .setColor('#aa0000')
-                .setTitle('Sikertelen hozzáadás!')
-                .setDescription(`<@`+ userId +`> már rendelkezett egy drágakővel!`)
-                .setTimestamp()
-                .setFooter('- Árus');
-            }
+                var userId = msg.mentions.users.first().id.toString();
 
-            msg.channel.send(embed);
+                var embed;
+
+                if (database[userId] == undefined || database[userId] == 0) {
+                    database[userId] = 1;
+                    
+                    SaveFile();
+
+                    embed = new Discord.MessageEmbed()
+                    .setColor('#00aa00')
+                    .setTitle('Sikeres hozzáadás!')
+                    .setDescription(`Mostmár <@`+ userId +`> felhaszáló rendelkezik egy drágakővel!`)
+                    .setTimestamp()
+                    .setFooter('- Árus');
+                } else {
+                    embed = new Discord.MessageEmbed()
+                    .setColor('#aa0000')
+                    .setTitle('Sikertelen hozzáadás!')
+                    .setDescription(`<@`+ userId +`> már rendelkezett egy drágakővel!`)
+                    .setTimestamp()
+                    .setFooter('- Árus');
+                }
+
+                msg.channel.send(embed);
+            }
         } else if (msg.content.startsWith('!take')) {
-            if (msg.mentions.users.size == 0) {
+            if (msg.mentions.users.array().length == 0) {
                 
                 var embed = new Discord.MessageEmbed()
                 .setColor('#aa0000')
@@ -113,33 +111,33 @@ client.on('message', msg => {
                 msg.channel.send(embed);
                 
                 return;
-            }
-
-            var userId = msg.mentions.users.first().id.toString();
-
-            var embed;
-
-            if (database[userId] == 1) {
-                database[userId] = 0;
-                
-                SaveFile();
-
-                embed = new Discord.MessageEmbed()
-                .setColor('#00aa00')
-                .setTitle('Sikeres elvétel!')
-                .setDescription(`Mostmár <@`+ userId +`> felhaszáló nem rendelkezik drágakővel!`)
-                .setTimestamp()
-                .setFooter('- Árus');
             } else {
-                embed = new Discord.MessageEmbed()
-                .setColor('#aa0000')
-                .setTitle('Sikertelen elvétel!')
-                .setDescription(`<@`+ userId +`> még nem rendelkezett drágakővel!`)
-                .setTimestamp()
-                .setFooter('- Árus');
-            }
+                var userId = msg.mentions.users.first().id.toString();
 
-            msg.channel.send(embed);
+                var embed;
+
+                if (database[userId] == 1) {
+                    database[userId] = 0;
+                    
+                    SaveFile();
+
+                    embed = new Discord.MessageEmbed()
+                    .setColor('#00aa00')
+                    .setTitle('Sikeres elvétel!')
+                    .setDescription(`Mostmár <@`+ userId +`> felhaszáló nem rendelkezik drágakővel!`)
+                    .setTimestamp()
+                    .setFooter('- Árus');
+                } else {
+                    embed = new Discord.MessageEmbed()
+                    .setColor('#aa0000')
+                    .setTitle('Sikertelen elvétel!')
+                    .setDescription(`<@`+ userId +`> még nem rendelkezett drágakővel!`)
+                    .setTimestamp()
+                    .setFooter('- Árus');
+                }
+
+                msg.channel.send(embed);
+            }
         }
     }
 });

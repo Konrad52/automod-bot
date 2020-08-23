@@ -1,22 +1,29 @@
 const Discord = require('discord.js');
-var fs = require("fs");
+var jsonbinIoApi = require("jsonbin-io-api")
 const client = new Discord.Client();
+
+const api = new jsonbinIoApi(process.env.JSONAPI);
 
 var database = {};
 
 function SaveFile() {
-    fs.writeFileSync('./users.json', JSON.stringify(database));
+    api.updateBin({ 
+        id: '5f429aa4514ec5112d0ca67b',
+        data: database,
+        versioning: false
+    }).then(json => {
+        console.log(json);
+    });
 }
 
 function LoadFile() {
-    try {
-        if (fs.existsSync("./users.json")) {
-            database = JSON.parse(fs.readFileSync("./users.json"));
-        }
-    } catch(err) {
-        fs.writeFileSync('./users.json', "{}");
-        LoadFile();   
-    }
+    api.readBin({
+        id: '5f429aa4514ec5112d0ca67b',
+        version: 'latest'
+    }).then(json => {
+        console.log(json);
+        database = json['data'];
+    });
 }
 
 client.on('ready', () => {

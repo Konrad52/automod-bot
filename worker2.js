@@ -13,10 +13,9 @@ client.on('message', msg => {
         if (msg.content.startsWith('!shophere')) {
             const embed = new Discord.MessageEmbed()
                 .setColor('#ffaa00')
-                .setTitle('Gladiátor Leltár')
-                .setDescription(`**   Üdvözöllek!**\n
-                                Ez itt a szerverünk leltára, ahonnan jutalmakat válthatsz ki magadnak drágakőért cserébe.\n
-                                **Hogy honnan szerezhetsz drágakövet?**
+                .setTitle('Üdvözllek')
+                .setDescription(`Ez itt a szerverünk leltára, ahonnan jutalmakat válthatsz ki magadnak drágakőért cserébe.\n
+                                **Hogyan szerezhetsz drágakövet?**
                                 Nos, pár feltétel után kapsz egyet a játékaid során:
                                 > 1. Elérted a <@&720757882488094730> rangot.
                                 > 2. Egy mérkőzés során elérted a 15 hősgyilkosságot.
@@ -26,10 +25,10 @@ client.on('message', msg => {
                                 \n**Miféle jutalmaink vannak?**
                                 <:glad_banned:747103629810466896> - Ezzel egy kibannolt hőst hozhatsz a következő mérkőzéseden.
                                 <:gladi_reuse:747103629860929617> - Ezzel még **EGY** alkalommal játszahatod aznap az egyik hősödet.
-                                <:gladi_item3:747103629504151673> - Valami \`:P\`\n
-                                > ❗ __**Minden jutalom csak a vétel napján felhasználható**__
-                                > ❗ __**Egyszerre csak egy drágakő lehet egy felhasználónál. (Nem farmolható.)**__
-                                \nBármelyik jutalom a kiváltásához csak nyomd meg a megfelelő emotikont.
+                                <:gladi_item3:747103629504151673> - Ezzel az egyik mérkőzés 1v1 szakasza alatt kiválhaszthatod **EGYSZER** az ellenfeledet.\n
+                                > ❗ __**Minden jutalom csak a vétel napján felhasználható!**__
+                                > ❗ __**Egyszerre csak egy drágakő lehet egy felhasználónál! (Nem farmolható.)**__
+                                \n__Bármelyik jutalom kiváltásához csak nyomd meg a megfelelő emotikont.__
                                 \nSok szerencsét kívánok a jutalmakat megszerzéséhez és mindekinek jó játékot!`)
                 .setTimestamp()
                 .setFooter('- Árus');
@@ -40,6 +39,9 @@ client.on('message', msg => {
                 message.react('747103629860929617').then(() =>
                 message.react('747103629504151673'))));
             });
+
+            msg.delete();
+        } else if (msg.content.startsWith('!give')) {
         }
     }
 });

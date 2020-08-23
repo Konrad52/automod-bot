@@ -40,7 +40,7 @@ client.on('message', msg => {
             });
 
             const embed = new Discord.MessageEmbed()
-                .setColor('#ffaa00')
+                .setColor('#9b00e9')
                 .setTitle('Üdvözöllek!')
                 .setDescription(`Ez itt a szerverünk leltára, ahonnan jutalmakat válthatsz ki magadnak drágakőért cserébe.\n
                                 **Hogyan szerezhetsz drágakövet?**
@@ -172,14 +172,14 @@ client.on('messageReactionAdd', async (reaction, user) => {
             
                 if (database[user.id.toString()] == 1) {
                     embed = new Discord.MessageEmbed()
-                    .setColor('#ffaa00')
+                    .setColor('#ab00f9')
                     .setTitle('Üdvözöllek!')
                     .setDescription('Van egy drágaköved!')
                     .setTimestamp()
                     .setFooter('- Árus');
                 } else {
                     embed = new Discord.MessageEmbed()
-                    .setColor('#ffaa00')
+                    .setColor('#9b00e9')
                     .setTitle('Üdvözöllek!')
                     .setDescription('Nincs drágaköved!')
                     .setTimestamp()

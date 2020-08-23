@@ -61,7 +61,7 @@ client.on('message', msg => {
 
             msg.delete();
         } else if (msg.content.startsWith('!give')) {
-            var userId = msg.mentions.first().id.toString();
+            var userId = msg.mentions.users.first().id.toString();
 
             const embed = {};
 

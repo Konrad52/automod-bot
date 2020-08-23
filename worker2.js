@@ -16,7 +16,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
     }
     
     if (reaction.message.content.includes('Teszt'))
-        reaction.message.react(client.emojis.get("745207133657890856"))
+        reaction.message.react(client.emojis.cache.get("745207133657890856"));
 });
 
 client.login(process.env.TOKEN2);

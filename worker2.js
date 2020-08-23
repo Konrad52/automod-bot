@@ -63,7 +63,7 @@ client.on('message', msg => {
         } else if (msg.content.startsWith('!give')) {
             var userId = msg.mentions.users.first().id.toString();
 
-            const embed = {};
+            var embed;
 
             if (database[userId] == undefined || database[userId] == 0) {
                 database[userId] = 1;

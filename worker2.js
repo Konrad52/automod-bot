@@ -27,19 +27,19 @@ client.on('message', msg => {
                                 <:glad_banned:747103629810466896> - Ezzel egy kibannolt hőst hozhatsz a következő mérkőzéseden.
                                 <:gladi_reuse:747103629860929617> - Ezzel még **EGY** alkalommal játszahatod aznap az egyik hősödet.
                                 <:gladi_item3:747103629504151673> - Valami \`:P\`\n
-                                > ❗ __**Minden tárgy csak a vétel napján felhasználható**__
-                                > ❗ __**Egyszerre csak egy drágakő lehet egy felhasználónál.**__
+                                > ❗ __**Minden jutalom csak a vétel napján felhasználható**__
+                                > ❗ __**Egyszerre csak egy drágakő lehet egy felhasználónál. (Nem farmolható.)**__
                                 \nBármelyik jutalom a kiváltásához csak nyomd meg a megfelelő emotikont.
                                 \nSok szerencsét kívánok a jutalmakat megszerzéséhez és mindekinek jó játékot!`)
                 .setTimestamp()
                 .setFooter('- Árus');
 
-            msg.channel.send(embed);
-
-            msg.react('747106274885238935').then(() =>
-            msg.react('747103629810466896').then(() =>
-            msg.react('747103629860929617').then(() =>
-            msg.react('747103629504151673'))));
+            msg.channel.send(embed).then(message => {
+                message.react('747106274885238935').then(() =>
+                message.react('747103629810466896').then(() =>
+                message.react('747103629860929617').then(() =>
+                message.react('747103629504151673'))));
+            });
         }
     }
 });

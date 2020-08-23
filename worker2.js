@@ -22,7 +22,7 @@ function LoadFile() {
         version: 'latest'
     }).then(json => {
         console.log(json);
-        database = json['data'];
+        database = json;
     });
 }
 

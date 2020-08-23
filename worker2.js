@@ -165,8 +165,8 @@ client.on('messageReactionAdd', async (reaction, user) => {
     }
     
     if (reaction.message.id.toString() == database['messageId'] && user.id != client.user.id) {
-        console.log(reaction.id.toString());
-        switch (reaction.id.toString()) {
+        console.log(reaction.toString());
+        switch (reaction.toString()) {
             case '747106274885238935':
                 var embed;    
             

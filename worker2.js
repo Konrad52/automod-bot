@@ -57,12 +57,13 @@ client.on('message', msg => {
                                 > ❗ __**Minden jutalom csak a vétel napján felhasználható!**__
                                 > ❗ __**Egyszerre csak egy drágakő lehet egy felhasználónál! (Nem farmolható.)**__
                                 \n__Bármelyik jutalom kiváltásához csak nyomd meg a megfelelő emotikont.__
-                                \nSok szerencsét kívánok a jutalmakat megszerzéséhez és mindekinek jó játékot!`)
+                                \nSok szerencsét kívánok a jutalmak megszerzéséhez és mindekinek jó játékot!`)
                 .setTimestamp()
                 .setFooter('- Árus');
 
             msg.channel.send(embed).then(message => {
                 database['messageId'] = message.id.toString();
+                SaveFile();
 
                 message.react('747106274885238935').then(() =>
                 message.react('747103629810466896').then(() =>
@@ -163,8 +164,39 @@ client.on('messageReactionAdd', async (reaction, user) => {
 		}
     }
     
-    if (reaction.message.content.includes('Teszt'))
-        reaction.message.react(client.emojis.cache.get("745207133657890856"));
+    if (reaction.message.id.toString() == database['messageId']) {
+        switch (reaction.id) {
+            case '747106274885238935':
+                var embed;    
+            
+                if (database[user.id.toString()] == 1) {
+                    embed = new Discord.MessageEmbed()
+                    .setColor('#ffaa00')
+                    .setTitle('Üdvözöllek!')
+                    .setDescription('Van egy drágaköved!')
+                    .setTimestamp()
+                    .setFooter('- Árus');
+                } else {
+                    embed = new Discord.MessageEmbed()
+                    .setColor('#ffaa00')
+                    .setTitle('Üdvözöllek!')
+                    .setDescription('Nincs drágaköved!')
+                    .setTimestamp()
+                    .setFooter('- Árus');
+                }
+
+                user.send();
+                break;
+        }
+        var message = reaction.message;
+
+        message.reactions.removeAll();
+        
+        message.react('747106274885238935').then(() =>
+        message.react('747103629810466896').then(() =>
+        message.react('747103629860929617').then(() =>
+        message.react('747103629504151673'))));
+    }
 });
 
 client.login(process.env.TOKEN2);

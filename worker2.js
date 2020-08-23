@@ -35,6 +35,11 @@ client.on('message', msg => {
                 .setFooter('- Árus', 'https://cdn.discordapp.com/app-icons/747074877936369747/b581530bac729aea32d2fd655deee5ef.png');
 
             msg.channel.send(embed);
+
+            msg.react('747103628619415615').then(() =>
+            msg.react('747103629810466896').then(() =>
+            msg.react('747103629860929617').then(() =>
+            msg.react('747103629504151673'))));
         }
     }
 });

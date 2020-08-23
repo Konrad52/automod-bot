@@ -61,6 +61,20 @@ client.on('message', msg => {
 
             msg.delete();
         } else if (msg.content.startsWith('!give')) {
+            if (msg.mentions.users.first() == undefined) {
+                
+                var embed = new Discord.MessageEmbed()
+                .setColor('#aa0000')
+                .setTitle('Sikertelen hozzáadás!')
+                .setDescription(`Először említs meg valakit az üzenetedben!`)
+                .setTimestamp()
+                .setFooter('- Árus');
+
+                msg.channel.send(embed);
+                
+                return;
+            }
+
             var userId = msg.mentions.users.first().id.toString();
 
             var embed;
@@ -81,6 +95,46 @@ client.on('message', msg => {
                 .setColor('#aa0000')
                 .setTitle('Sikertelen hozzáadás!')
                 .setDescription(`<@`+ userId +`> már rendelkezett egy drágakővel!`)
+                .setTimestamp()
+                .setFooter('- Árus');
+            }
+
+            msg.channel.send(embed);
+        } else if (msg.content.startsWith('!take')) {
+            if (msg.mentions.users.first() == undefined) {
+                
+                var embed = new Discord.MessageEmbed()
+                .setColor('#aa0000')
+                .setTitle('Sikertelen hozzáadás!')
+                .setDescription(`Először említs meg valakit az üzenetedben!`)
+                .setTimestamp()
+                .setFooter('- Árus');
+
+                msg.channel.send(embed);
+                
+                return;
+            }
+
+            var userId = msg.mentions.users.first().id.toString();
+
+            var embed;
+
+            if (database[userId] == 1) {
+                database[userId] = 0;
+                
+                SaveFile();
+
+                embed = new Discord.MessageEmbed()
+                .setColor('#00aa00')
+                .setTitle('Sikeres elvétel!')
+                .setDescription(`Mostmár <@`+ userId +`> felhaszáló nem rendelkezik drágakővel!`)
+                .setTimestamp()
+                .setFooter('- Árus');
+            } else {
+                embed = new Discord.MessageEmbed()
+                .setColor('#aa0000')
+                .setTitle('Sikertelen elvétel!')
+                .setDescription(`<@`+ userId +`> még nem rendelkezett drágakővel!`)
                 .setTimestamp()
                 .setFooter('- Árus');
             }

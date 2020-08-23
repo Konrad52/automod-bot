@@ -15,20 +15,21 @@ client.on('message', msg => {
                 .setColor('#ffaa00')
                 .setTitle('Gladiátor Leltár')
                 .setDescription(`**   Üdvözöllek!**\n
-                                Ez itt a szerverünk leltára, ahonnan tárgyakat vehetsz ki magadnak égkövekért cserébe.
-                                Hogy honnan szerezhetsz égkövet?
-                                Nos, pár feltétel után kapsz egyet-egyet a játékaid után:
-                                > 1. Elérted a @⚔️Gladiátor⚔️ rangot.
+                                Ez itt a szerverünk leltára, ahonnan jutalmakat válthatsz ki magadnak égkőért cserébe.\n
+                                **Hogy honnan szerezhetsz égkövet?**
+                                Nos, pár feltétel után kapsz egyet a játékaid után:
+                                > 1. Elérted a <@&720757882488094730> rangot.
                                 > 2. Egy mérkőzés során elérted a 15 hősgyilkosságot.
                                 > 3. <>
-                                \nHonnan tudom hogy mennyi égkövem van?
-                                 - Reagálj ezzel az emotikonnal <:egko:747096872975597570> és elmondom neked.
-                                \nMiféle tárgyink vannak?
-                                <baltaEmoji> - Ezzel egy kibannolt hőst hozhatsz a következő mérkőzéseden.
-                                <> - <>
-                                <> - <>
-                                \n❗ Minden tárgy csak a vétel napján felhasználható ❗
-                                Bármelyik tágynak a megvételéhez csak nyomd meg a megfelelő emotikont.
+                                \n**Honnan tudom hogy van-e éppen égkövem?**
+                                 - Reagálj ezzel az emotikonnal <:egko:747103628619415615> és egy privát üzenetben elküldöm.
+                                \n**Miféle jutalmaink vannak?**
+                                <:glad_banned:747103629810466896> - Ezzel egy kibannolt hőst hozhatsz a következő mérkőzéseden.
+                                <:gladi_reuse:747103629860929617> - Ezzel még **EGY** alkalommal játszahatod aznap az egyik hősödet.
+                                <:gladi_item3:747103629504151673> - Valami \`:P\`\n
+                                > ❗ __**Minden tárgy csak a vétel napján felhasználható**__
+                                > ❗ __**Egyszerre csak egy égkő lehet egy felhasználónál.**__
+                                \nBármelyik tágynak a megvételéhez csak nyomd meg a megfelelő emotikont.
                                 \nSok szerencsét kívánok a tárgyak megszerzéséhez és mindekinek jó játékot!`)
                 .setTimestamp()
                 .setFooter('- Árus', 'https://cdn.discordapp.com/app-icons/747074877936369747/b581530bac729aea32d2fd655deee5ef.png');

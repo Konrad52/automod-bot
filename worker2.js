@@ -1,8 +1,27 @@
 const Discord = require('discord.js');
+var fs = require("fs");
 const client = new Discord.Client();
+
+var database = {};
+
+function SaveFile() {
+    fs.writeFileSync('./users.json', JSON.stringify(database));
+}
+
+function LoadFile() {
+    try {
+        if (fs.existsSync("./users.json")) {
+            database = JSON.parse(fs.readFileSync("./users.json"));
+        }
+    } catch(err) {
+        fs.writeFileSync('./users.json', "{}");
+        LoadFile();   
+    }
+}
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
+    LoadFile();
 });
 
 client.on('message', msg => {
@@ -13,7 +32,7 @@ client.on('message', msg => {
         if (msg.content.startsWith('!shophere')) {
             const embed = new Discord.MessageEmbed()
                 .setColor('#ffaa00')
-                .setTitle('Üdvözllek')
+                .setTitle('Üdvözöllek!')
                 .setDescription(`Ez itt a szerverünk leltára, ahonnan jutalmakat válthatsz ki magadnak drágakőért cserébe.\n
                                 **Hogyan szerezhetsz drágakövet?**
                                 Nos, pár feltétel után kapsz egyet a játékaid során:
@@ -42,6 +61,31 @@ client.on('message', msg => {
 
             msg.delete();
         } else if (msg.content.startsWith('!give')) {
+            var userId = msg.mentions.first().id.toString();
+
+            const embed;
+
+            if (database[userId] == undefined || database[userId] == 0) {
+                database[userId] = 1;
+                
+                SaveFile();
+
+                embed = new Discord.MessageEmbed()
+                .setColor('#00aa00')
+                .setTitle('Sikeres hozzáadás!')
+                .setDescription(`Mostmár <@`+ userId +`> felhaszáló rendelkezik egy drágakővel!`)
+                .setTimestamp()
+                .setFooter('- Árus');
+            } else {
+                embed = new Discord.MessageEmbed()
+                .setColor('#aa0000')
+                .setTitle('Sikertelen hozzáadás!')
+                .setDescription(`<@`+ userId +`> már rendelkezett egy drágakővel!`)
+                .setTimestamp()
+                .setFooter('- Árus');
+            }
+
+            msg.channel.send(embed);
         }
     }
 });

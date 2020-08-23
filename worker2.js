@@ -49,7 +49,7 @@ client.on('message', msg => {
                                 > 2. Egy mérkőzés során elérted a 15 hősgyilkosságot.
                                 > 3. <>
                                 \n**Honnan tudom hogy van-e éppen drágakövem?**
-                                 - Reagálj ezzel az emotikonnal <:gemstone:747106274885238935> és egy privát üzenetben elküldöm.
+                                 - Reagálj ezzel az emotikonnal <:gemstone:747106274885238935> és egy privát üzenetben értesítést kapsz róla.
                                 \n**Milyen jutalmaink vannak?**
                                 <:glad_banned:747103629810466896> - Ezzel egy kibannolt hőst hozhatsz a következő mérkőzéseden.
                                 <:gladi_reuse:747103629860929617> - Ezzel még **EGY** alkalommal játszahatod aznap az egyik hősödet.
@@ -186,7 +186,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
                     .setFooter('- Árus');
                 }
 
-                user.send();
+                user.send(embed);
                 break;
         }
         var message = reaction.message;

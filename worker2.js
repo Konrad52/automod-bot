@@ -12,6 +12,7 @@ function SaveFile() {
         data: database,
         versioning: false
     });
+    console.log("UPDATE: " + JSON.stringify(database));
 }
 
 function LoadFile() {
@@ -20,6 +21,7 @@ function LoadFile() {
         version: 'latest'
     }).then(json => {
         database = json;
+        console.log("LOAD: " + JSON.stringify(database));
     });
 }
 
@@ -165,7 +167,6 @@ client.on('messageReactionAdd', async (reaction, user) => {
     }
     
     if (reaction.message.id.toString() == database['messageId'] && user.id != client.user.id) {
-        console.log(reaction.emoji.id.toString());
         switch (reaction.emoji.id.toString()) {
             case '747106274885238935':
                 var embed;    

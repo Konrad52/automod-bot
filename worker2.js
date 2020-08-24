@@ -173,6 +173,9 @@ client.on('messageReactionAdd', async (reaction, user) => {
     }
 
     if (reaction.message.id.toString() == database['messageId'] && user.id != client.user.id) {
+        let guild = reaction.message.guild;
+        let member = guild.member(user);
+
         switch (reaction.emoji.id.toString()) {
             case '747106274885238935':
                 var embed;    
@@ -201,7 +204,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 if (database[user.id.toString()] == 1) {
                     embed = new Discord.MessageEmbed()
                     .setColor('#ab00f9')
-                    .setTitle('Gratulálunk '+user.username+'!')
+                    .setTitle('Gratulálunk '+member.displayName+'!')
                     .setDescription(`Sikeresen feloldottad a jutalmad, 
                                     amelyet a mai napon a legközelebbi meccseden használhatsz fel!
                                     \nJutalom típusa: <:glad_banned:747103629810466896> - Egy bannolt hős hozása.
@@ -229,7 +232,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 if (database[user.id.toString()] == 1) {
                     embed = new Discord.MessageEmbed()
                     .setColor('#ab00f9')
-                    .setTitle('Gratulálunk '+user.username+'!')
+                    .setTitle('Gratulálunk '+member.displayName+'!')
                     .setDescription(`Sikeresen feloldottad a jutalmad, 
                                     amelyet a mai napon a legközelebbi meccseden használhatsz fel!
                                     \nJutalom típusa: <:gladi_reuse:747103629860929617> - Egy hős hozása 2 alkalommal.
@@ -257,7 +260,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 if (database[user.id.toString()] == 1) {
                     embed = new Discord.MessageEmbed()
                     .setColor('#ab00f9')
-                    .setTitle('Gratulálunk '+user.username+'!')
+                    .setTitle('Gratulálunk '+member.displayName+'!')
                     .setDescription(`Sikeresen feloldottad a jutalmad, 
                                     amelyet a mai napon a legközelebbi meccseden használhatsz fel!
                                     \nJutalom típusa: <:gladi_item3:747103629504151673> - 1v1 ellenfél kiválasztása.

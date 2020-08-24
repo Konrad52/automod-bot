@@ -201,7 +201,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 if (database[user.id.toString()] == 1) {
                     embed = new Discord.MessageEmbed()
                     .setColor('#ab00f9')
-                    .setTitle('Gratulálunk!')
+                    .setTitle('Gratulálunk '+user.username+'!')
                     .setDescription(`Sikeresen feloldottad a jutalmad, 
                                     amelyet a mai napon a legközelebbi meccseden használhatsz fel!
                                     \nJutalom típusa: <:glad_banned:747103629810466896> - Egy bannolt hős hozása.
@@ -227,7 +227,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 if (database[user.id.toString()] == 1) {
                     embed = new Discord.MessageEmbed()
                     .setColor('#ab00f9')
-                    .setTitle('Gratulálunk!')
+                    .setTitle('Gratulálunk '+user.username+'!')
                     .setDescription(`Sikeresen feloldottad a jutalmad, 
                                     amelyet a mai napon a legközelebbi meccseden használhatsz fel!
                                     \nJutalom típusa: <:gladi_reuse:747103629860929617> - Egy hős hozása 2 alkalommal.
@@ -253,7 +253,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 if (database[user.id.toString()] == 1) {
                     embed = new Discord.MessageEmbed()
                     .setColor('#ab00f9')
-                    .setTitle('Gratulálunk!')
+                    .setTitle('Gratulálunk '+user.username+'!')
                     .setDescription(`Sikeresen feloldottad a jutalmad, 
                                     amelyet a mai napon a legközelebbi meccseden használhatsz fel!
                                     \nJutalom típusa: <:gladi_item3:747103629504151673> - 1v1 ellenfél kiválasztása.

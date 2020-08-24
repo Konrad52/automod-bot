@@ -209,6 +209,8 @@ client.on('messageReactionAdd', async (reaction, user) => {
                     .setTimestamp()
                     .setFooter('- Árus');
 
+                    database[user.id.toString()] = 0;
+                    SaveFile();
                     client.channels.cache.get('747046212045111307').send(embed);
                 } else {
                     embed = new Discord.MessageEmbed()
@@ -235,6 +237,8 @@ client.on('messageReactionAdd', async (reaction, user) => {
                     .setTimestamp()
                     .setFooter('- Árus');
 
+                    database[user.id.toString()] = 0;
+                    SaveFile();
                     client.channels.cache.get('747046212045111307').send(embed);
                 } else {
                     embed = new Discord.MessageEmbed()
@@ -261,6 +265,8 @@ client.on('messageReactionAdd', async (reaction, user) => {
                     .setTimestamp()
                     .setFooter('- Árus');
 
+                    database[user.id.toString()] = 0;
+                    SaveFile();
                     client.channels.cache.get('747046212045111307').send(embed);
                 } else {
                     embed = new Discord.MessageEmbed()

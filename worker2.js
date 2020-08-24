@@ -195,6 +195,84 @@ client.on('messageReactionAdd', async (reaction, user) => {
 
                 user.send(embed);
                 break;
+            case '747103629810466896':
+                var embed;    
+            
+                if (database[user.id.toString()] == 1) {
+                    embed = new Discord.MessageEmbed()
+                    .setColor('#ab00f9')
+                    .setTitle('Gratulálunk!')
+                    .setDescription(`Sikeresen feloldottad a jutalmad, 
+                                    amelyet a mai napon a legközelebbi meccseden használhatsz fel!
+                                    \nJutalom típusa: <:glad_banned:747103629810466896> - Egy bannolt hős hozása.
+                                    \nJó játékot!`)
+                    .setTimestamp()
+                    .setFooter('- Árus');
+
+                    client.channels.cache.get('747046212045111307').send(embed);
+                } else {
+                    embed = new Discord.MessageEmbed()
+                    .setColor('#9b00e9')
+                    .setTitle('Üdvözöllek!')
+                    .setDescription('Nincs drágaköved, hogy kiváltsd ezt a jutalmat!')
+                    .setTimestamp()
+                    .setFooter('- Árus');
+
+                    user.send(embed);
+                }
+                break;
+            case '747103629860929617':
+                var embed;    
+            
+                if (database[user.id.toString()] == 1) {
+                    embed = new Discord.MessageEmbed()
+                    .setColor('#ab00f9')
+                    .setTitle('Gratulálunk!')
+                    .setDescription(`Sikeresen feloldottad a jutalmad, 
+                                    amelyet a mai napon a legközelebbi meccseden használhatsz fel!
+                                    \nJutalom típusa: <:gladi_reuse:747103629860929617> - Egy hős hozása 2 alkalommal.
+                                    \nJó játékot!`)
+                    .setTimestamp()
+                    .setFooter('- Árus');
+
+                    client.channels.cache.get('747046212045111307').send(embed);
+                } else {
+                    embed = new Discord.MessageEmbed()
+                    .setColor('#9b00e9')
+                    .setTitle('Üdvözöllek!')
+                    .setDescription('Nincs drágaköved, hogy kiváltsd ezt a jutalmat!')
+                    .setTimestamp()
+                    .setFooter('- Árus');
+
+                    user.send(embed);
+                }
+                break;
+            case '747103629504151673':
+                var embed;    
+            
+                if (database[user.id.toString()] == 1) {
+                    embed = new Discord.MessageEmbed()
+                    .setColor('#ab00f9')
+                    .setTitle('Gratulálunk!')
+                    .setDescription(`Sikeresen feloldottad a jutalmad, 
+                                    amelyet a mai napon a legközelebbi meccseden használhatsz fel!
+                                    \nJutalom típusa: <:gladi_item3:747103629504151673> - 1v1 ellenfél kiválasztása.
+                                    \nJó játékot!`)
+                    .setTimestamp()
+                    .setFooter('- Árus');
+
+                    client.channels.cache.get('747046212045111307').send(embed);
+                } else {
+                    embed = new Discord.MessageEmbed()
+                    .setColor('#9b00e9')
+                    .setTitle('Üdvözöllek!')
+                    .setDescription('Nincs drágaköved, hogy kiváltsd ezt a jutalmat!')
+                    .setTimestamp()
+                    .setFooter('- Árus');
+
+                    user.send(embed);
+                }
+                break;
         }
         var message = reaction.message;
 

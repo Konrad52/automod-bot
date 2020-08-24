@@ -28,6 +28,8 @@ function LoadFile() {
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     LoadFile();
+
+    client.channels.get('747043216871915542').fetchMessage(database['messageId']);
 });
 
 client.on('message', msg => {

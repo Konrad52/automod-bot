@@ -53,7 +53,7 @@ client.on('message', msg => {
                                 Nos, pár feltétel után kapsz egyet a játékaid során:
                                 > 1. Elérted a <@&720757882488094730> rangot.
                                 > 2. Egy mérkőzés során elérted a 15 hősgyilkosságot.
-                                > 3. Nem várod ki az 1v1 szakasz során hogy lejárjon az idő. 
+                                > 3. Nem várhatod ki az 1v1 szakasz során hogy lejárjon az idő. 
                                 >    (Az adott meccsben a csapattársaidnak kell a vezetőség felé megerősíteni hogy teljesítetted-e ezt vagy sem.)
                                 > 4. A Facebook oldalunk követője kell hogy legyél.
                                 \n**Honnan tudom hogy van-e éppen drágakövem?**

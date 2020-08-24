@@ -166,6 +166,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 		}
     }
     
+    console.log("? " + reaction.message.id.toString() + " : " + database['messageId'] + " ?");
     if (reaction.message.id.toString() == database['messageId'] && user.id != client.user.id) {
         switch (reaction.emoji.id.toString()) {
             case '747106274885238935':

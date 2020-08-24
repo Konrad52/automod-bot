@@ -235,7 +235,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
                     .setTitle('Gratulálunk '+member.displayName+'!')
                     .setDescription(`Sikeresen feloldottad a jutalmad, 
                                     amelyet a mai napon a legközelebbi meccseden használhatsz fel!
-                                    \nJutalom típusa: <:gladi_reuse:747103629860929617> - Egy hős hozása 2 alkalommal.
+                                    \nJutalom típusa: <:gladi_reuse:747103629860929617> - Egy hős újraválasztása 1 alkalommal.
                                     \nJó játékot!`)
                     .setTimestamp()
                     .setFooter('- Árus');

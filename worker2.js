@@ -4,6 +4,8 @@ const client = new Discord.Client();
 
 const api = new jsonbinIoApi(process.env.JSONAPI);
 
+const user_roles     = process.env.USER_ROLES    .split(',');
+
 var database = {};
 
 function SaveFile() {
@@ -38,7 +40,14 @@ client.on('message', msg => {
     if (msg.member == null)
         return;
 
-    if (msg.content.startsWith('!')) {
+    var can_use_commands = false;
+
+    user_roles.forEach(roleid => {
+        if (msg.member.roles.cache.has(roleid))
+            can_use_commands = true;
+    });
+
+    if (can_use_commands && msg.content.startsWith('!')) {
         if (msg.content.startsWith('!shophere')) {
             msg.channel.messages.fetch(database['messageId']).then(oldMessage => {
                 if (oldMessage != undefined)

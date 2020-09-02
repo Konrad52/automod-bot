@@ -245,6 +245,7 @@ client.on('guildMemberAdd', member => {
     }
     case '461172935282130964': {
       member.guild.channels.cache.find(channel => channel.id == '720738865517690931').send('Üdvözlünk a GLADIÁTOR MÓD Hivatalos Discord szerverén! <@' + member.user.id + '> csatlakozott a szerverhez!');
+      member.roles.add(member.guild.roles.cache.find(role => role.id === "750725408910999573"));
       break;
     }
   }
@@ -254,11 +255,11 @@ client.on('guildMemberRemove', member => {
   console.log('MemberRemove');
   switch (member.guild.id) {
     case '729256763261714503': {
-      member.guild.channels.cache.find(channel => channel.id == '733055319483088928').send('<@' + member.user.id + '> kilépett, mert egy pöcskarika.');
+      member.guild.channels.cache.find(channel => channel.id == '733055319483088928').send('<@' + member.user.id + '> (**' + member.user.username + '**) kilépett, mert egy pöcskarika.');
       break;
     }
     case '461172935282130964': {
-      member.guild.channels.cache.find(channel => channel.id == '725403466649829458').send('<@' + member.user.id + '> kilépett, mert egy pöcskarika.');
+      member.guild.channels.cache.find(channel => channel.id == '725403466649829458').send('<@' + member.user.id + '> (**' + member.user.username + '**) kilépett, mert egy pöcskarika.');
       break;
     }
   }

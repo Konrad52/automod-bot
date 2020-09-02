@@ -18,7 +18,7 @@ var warning_2_users = [ { username: '', timeout: 3 } ];
 var warning_3_users = [ { username: '', timeout: 3 } ];
 var muted_users     = [ { username: '', timeout: 3 } ];
 
-var newMemberRole = member.guild.roles.cache.find(role => role.id.toString() == "750725408910999573");
+var newMemberRole = undefined;
 
 function lower_risk_level() {
   warning_1_users.forEach(function(element, index, object) {
@@ -247,6 +247,8 @@ client.on('guildMemberAdd', member => {
     }
     case '461172935282130964': {
       member.guild.channels.cache.find(channel => channel.id == '720738865517690931').send('Üdvözlünk a GLADIÁTOR MÓD Hivatalos Discord szerverén! <@' + member.user.id + '> csatlakozott a szerverhez!');
+      if (newMemberRole == undefined)
+        newMemberRole = member.guild.roles.cache.find(role => role.id.toString() == "750725408910999573");
       member.roles.add(newMemberRole);
       break;
     }

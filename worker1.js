@@ -247,9 +247,7 @@ client.on('guildMemberAdd', member => {
     }
     case '461172935282130964': {
       member.guild.channels.cache.find(channel => channel.id == '720738865517690931').send('Üdvözlünk a GLADIÁTOR MÓD Hivatalos Discord szerverén! <@' + member.user.id + '> csatlakozott a szerverhez!');
-      if (newMemberRole == undefined)
-        newMemberRole = member.guild.roles.cache.find(role => role.id.toString() == "750725408910999573");
-      member.roles.add(newMemberRole);
+      member.roles.add(member.guild.roles.cache.find(role => role.id.toString() == "750725408910999573"));
       break;
     }
   }

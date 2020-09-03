@@ -220,6 +220,9 @@ client.on('voiceStateUpdate', (oldState, newState) => {
       if (newState.channelID == ping.voice) {
         const channel = newState.guild.client.channels.cache.find(channel => channel.id == ping.text);
         channel.send('<@&' + ping.role + '>, <@' + newState.member.id + '> felhasználó belépett a `#' + newState.channel.name + '` szobába, valamelyikőtök kérdezze meg tőle, hogy mit szeretne!');
+      } else if (newState.channelID == '751133039282880659') {
+          const channel = newState.guild.client.channels.cache.find(channel => channel.id == '747043154728845352');
+          channel.send('<@&' + ping.role + '>, <@' + newState.member.id + '> felhasználó belépett a `#' + newState.channel.name + '` szobába, valaki jelentkezzen tgf-re!');
       }
     });
   }

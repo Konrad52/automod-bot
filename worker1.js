@@ -215,7 +215,7 @@ client.on('voiceStateUpdate', (oldState, newState) => {
       excluded = true;
     }
   });
-  if (newState != undefined && !excluded) {
+  if (newState != undefined && !excluded && oldState != newState) {
     pings.forEach(ping => {
       if (newState.channelID == ping.voice) {
         const channel = newState.guild.client.channels.cache.find(channel => channel.id == ping.text);

@@ -211,18 +211,19 @@ client.on('message', msg => {
 let sentLastMsg = false;
 
 client.on('voiceStateUpdate', (oldState, newState) => {
-  console.log("VoiceStateUpdate");
   let excluded = false;
   ping_roles.forEach(role => {
     if (newState.member.roles.cache.has(role)) {
       excluded = true;
     }
   });
-  console.log(excluded.toString());
   if (oldState != undefined && newState != undefined && !excluded && oldState.channelID != newState.channelID) {
+    console.log("VoiceStateUpdate");
     pings.forEach(ping => {
+      console.log(newState.channelID.toString() + " : " + ping.voice);
       if (newState.channelID == ping.voice) {
         const channel = newState.guild.client.channels.cache.find(channel => channel.id == ping.text);
+        console.log(channel.name);
         channel.send('<@&' + ping.role + '>, <@' + newState.member.id + '> felhasználó belépett a `#' + newState.channel.name + '` szobába, valaki beszéljen vele!');
       }
     });

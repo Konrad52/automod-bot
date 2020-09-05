@@ -208,14 +208,18 @@ client.on('message', msg => {
   }
 });
 
+let sentLastMsg = false;
+
 client.on('voiceStateUpdate', (oldState, newState) => {
+  console.log("VoiceStateUpdate");
   let excluded = false;
   ping_roles.forEach(role => {
     if (newState.member.roles.cache.has(role)) {
       excluded = true;
     }
   });
-  if (newState != undefined && !excluded && oldState.channelID != newState.channelID) {
+  console.log(excluded.toString());
+  if (oldState != undefined && newState != undefined && !excluded && oldState.channelID != newState.channelID) {
     pings.forEach(ping => {
       if (newState.channelID == ping.voice) {
         const channel = newState.guild.client.channels.cache.find(channel => channel.id == ping.text);

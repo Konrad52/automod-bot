@@ -215,14 +215,11 @@ client.on('voiceStateUpdate', (oldState, newState) => {
       excluded = true;
     }
   });
-  if (newState != undefined && !excluded && oldState != newState) {
+  if (newState != undefined && !excluded && oldState.channelID != newState.channelID) {
     pings.forEach(ping => {
       if (newState.channelID == ping.voice) {
         const channel = newState.guild.client.channels.cache.find(channel => channel.id == ping.text);
-        channel.send('<@&' + ping.role + '>, <@' + newState.member.id + '> felhasználó belépett a `#' + newState.channel.name + '` szobába, valamelyikőtök kérdezze meg tőle, hogy mit szeretne!');
-      } else if (newState.channelID == '751133039282880659') {
-          const channel = newState.guild.client.channels.cache.find(channel => channel.id == '747043154728845352');
-          channel.send('<@&' + ping.role + '>, <@' + newState.member.id + '> felhasználó belépett a `#' + newState.channel.name + '` szobába, valaki jelentkezzen tgf-re!');
+        channel.send('<@&' + ping.role + '>, <@' + newState.member.id + '> felhasználó belépett a `#' + newState.channel.name + '` szobába, valaki beszéljen vele!');
       }
     });
   }

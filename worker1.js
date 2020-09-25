@@ -50,11 +50,8 @@ function lower_risk_level() {
 lower_risk_level();
 
 function dialy_report() {
-  console.log('');
-  console.log('===');
   console.log('Muted user count: ' + muted_users.length);
   console.log('===');
-  console.log('');
   setTimeout(dialy_report, 1000 * 60 * 10);
 }
 
@@ -217,13 +214,10 @@ client.on('voiceStateUpdate', (oldState, newState) => {
       excluded = true;
     }
   });
-  if (oldState != undefined && newState != undefined && !excluded && oldState.channelID != newState.channelID) {
-    console.log("VoiceStateUpdate");
+  if (newState.channelID != undefined && newState.channelID != null && !excluded && oldState.channelID != newState.channelID) {
     pings.forEach(ping => {
-      console.log(newState.channelID.toString() + " : " + ping.voice);
       if (newState.channelID == ping.voice) {
         const channel = newState.guild.client.channels.cache.find(channel => channel.id == ping.text);
-        console.log(channel.name);
         channel.send('<@&' + ping.role + '>, <@' + newState.member.id + '> felhasználó belépett a `#' + newState.channel.name + '` szobába, valaki beszéljen vele!');
       }
     });
@@ -244,7 +238,6 @@ client.on('guildBanAdd', function(guild, user) {
 });
 
 client.on('guildMemberAdd', member => {
-  console.log('MemberAdd');
   switch (member.guild.id) {
     case '729256763261714503': {
       member.guild.channels.cache.find(channel => channel.id == '735105412025679943').send('Üdvözlünk a TESZT Hivatalos Discord szerverén! <@' + member.user.id + '> csatlakozott a szerverhez!');
@@ -262,7 +255,6 @@ client.on('guildMemberAdd', member => {
 });
 
 client.on('guildMemberRemove', member => {
-  console.log('MemberRemove');
   switch (member.guild.id) {
     case '729256763261714503': {
       member.guild.channels.cache.find(channel => channel.id == '733055319483088928').send('<@' + member.user.id + '> (**' + member.user.username + '**) kilépett, mert egy pöcskarika.');
